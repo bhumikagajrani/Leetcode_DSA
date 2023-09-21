@@ -1,0 +1,33 @@
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        return atmost(nums,k)-atmost(nums,k-1);
+    }
+
+
+        private int atmost(int nums[], int k)
+        {
+        
+            int s=0, e=0, oddcount=0, ans=0;
+            while(e<nums.length)
+            {
+                if(nums[e]%2==1)
+                {
+                    k--;
+                }
+                while(k<0)
+                {
+                    if(nums[s]%2==1)
+                    {
+                        k++;
+                    }
+                    s++;
+                }
+                ans=ans+(e-s)+1;
+                e++;
+
+            }
+        return ans;
+        }
+
+    
+}
