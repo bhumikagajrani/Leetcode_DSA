@@ -1,0 +1,28 @@
+class Solution {
+    public int subarraysWithKDistinct(int[] nums, int k) {
+        return atmostsubarraywithdistinctk(nums,k)-atmostsubarraywithdistinctk(nums,k-1);
+
+    }
+
+    private int atmostsubarraywithdistinctk(int[] nums, int k)
+    {
+        int s=0, e=0, ans=0;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        while(e<nums.length)
+        {
+            map.put(nums[e],map.getOrDefault(nums[e],0)+1);
+            while(s<=e && map.size()>k)
+            {
+                map.put(nums[s],map.getOrDefault(nums[s],0)-1);
+                if(map.get(nums[s])==0)
+                {
+                    map.remove(nums[s]);
+                }
+                s++;
+            }
+            ans=ans+(e-s)+1;
+            e++;
+        }
+        return ans;
+    }
+}
