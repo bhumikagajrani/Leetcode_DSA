@@ -14,6 +14,7 @@ class Solution {
         if(target==0)
         {
             ans.add(new ArrayList<>(list));
+            return;
         }
         
         for(int i=ind;i<arr.length;i++)
